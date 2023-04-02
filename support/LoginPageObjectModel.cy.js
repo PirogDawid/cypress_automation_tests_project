@@ -24,7 +24,16 @@ rememberMe(){
 lostPassword(){
     return cy.get('[href="https://skleptest.pl/my-account/lost-password/"]')
 }
-   
+correctLoginContainer(){
+    return cy.get('#post-8 > div.woocommerce > div')
+}
+logOut(){
+    return cy.get('.woocommerce-MyAccount-navigation-link--customer-logout > a')
+}
+confirmationLogOut(){
+    return cy.get('#post-8 > div.woocommerce > div.woocommerce-MyAccount-content > p:nth-child(1) > a')
+}
+  
    
 }
     
