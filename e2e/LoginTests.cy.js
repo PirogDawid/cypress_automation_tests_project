@@ -34,11 +34,7 @@ describe("Account Page",  function () {
        ///Error mesage when your username is incorrect
        cy.get("#post-8 > div.woocommerce > ul").should('be.visible')
        .contains(' is not registered on this site. If you are unsure of your username, try your email address instead.')
-       
-      
-       
                
-        
 })
     it("Login with wrong password",  function () {
         
@@ -55,13 +51,8 @@ describe("Account Page",  function () {
        .contains(' The password you entered for the username ')
        cy.get('#post-8 > div.woocommerce > ul > li > strong:nth-child(2)').should('be.visible')
             .and('have.text', 'skleptestarmy17', )
-            
-       
-      
-       
-       
-        
-    })
+                   
+})
     it.only("Login with empty fields",  function () {
         
      cy.openAccountPage();
@@ -77,10 +68,7 @@ describe("Account Page",  function () {
           .contains(' Username is required.')
     //Error should exist
     cy.get('#post-8 > div.woocommerce > ul > li > strong').should('exist').and('be.visible')
-          
-         
-
-                 
+                           
     })
     
 })
