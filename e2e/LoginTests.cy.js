@@ -62,6 +62,27 @@ describe("Account Page",  function () {
        
         
     })
+    it.only("Login with empty fields",  function () {
+        
+     cy.openAccountPage();
+     
+     
+    login.usernameField()
+         .should('not.have.value')
+    login.passwordField()
+         .should('not.have.value')       
+    login.loginButton().click();
+    //Error mesage when your dont input username
+    cy.get("#post-8 > div.woocommerce > ul").should('be.visible').and('exist')
+          .contains(' Username is required.')
+    //Error should exist
+    cy.get('#post-8 > div.woocommerce > ul > li > strong').should('exist').and('be.visible')
+          
+         
+
+                 
+    })
+    
 })
     it("Loading page",  function () {
         
