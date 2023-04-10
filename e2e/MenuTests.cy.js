@@ -73,12 +73,12 @@ describe("Main Menu",  function () {
                        
             cy.openMainPage();
             expect(PageLoadTime).to.be.lessThan(2) // Page load time
-                //About Us element in menu test
+                //About Us element in menu tests
             menu.menuAboutUs()
                 .should('have.attr', 'itemtype', 'https://www.schema.org/SiteNavigationElement')
                 .and('contain', 'About Us')
                 .and('have.css', 'color',  'rgb(113, 113, 113)')
-                //About us element in menu test
+                //About us element in menu tests
             cy.get('[title="About Us"]')
                 .should('have.css', 'color',  'rgb(255, 255, 255)')
                 .and('have.css', 'font-size', '15px')
@@ -91,12 +91,12 @@ describe("Main Menu",  function () {
                        
             cy.openMainPage();
             expect(PageLoadTime).to.be.lessThan(2) // Page load time
-                //Contact element in menu test
+                //Contact element in menu tests
             menu.menuContact()
                 .should('have.attr', 'itemtype', 'https://www.schema.org/SiteNavigationElement')
                 .and('contain', 'Contact')
                 .and('have.css', 'color',  'rgb(113, 113, 113)')
-                //Contact title in menu test
+                //Contact title in menu tests
             cy.get('[title="Contact"]')
                 .should('have.css', 'color',  'rgb(255, 255, 255)')
                 .and('have.css', 'font-size', '15px')
@@ -109,12 +109,12 @@ describe("Main Menu",  function () {
                        
             cy.openMainPage();
             expect(PageLoadTime).to.be.lessThan(2) // Page load time
-                //Blog element in menu test
+                //Blog element in menu tests
             menu.menuBlog()
                 .should('have.attr', 'itemtype', 'https://www.schema.org/SiteNavigationElement')
                 .and('contain', 'Blog')
                 .and('have.css', 'color',  'rgb(113, 113, 113)')
-                //Blog title element in menu test
+                //Blog title element in menu tests
             cy.get('[title="Blog"]')
                 .should('have.css', 'color',  'rgb(255, 255, 255)')
                 .and('have.css', 'font-size', '15px')
