@@ -16,7 +16,7 @@ describe("Main Page",  function () {
           }).then(resp => {
             expect(resp.status).to.eq(200) 
         })
-        // Check if elements exist 
+        // Check if elements exists 
         page.mainMenu().should("be.visible").and("exist")                       
         page.topBar().should("be.visible").and("exist")
         page.sliderBar().should("be.visible").and("exist")
