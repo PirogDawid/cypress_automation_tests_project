@@ -6,7 +6,7 @@ const PageLoadTime = ((t1) / 1000);
 describe('Website shop tests ', function() {
         
     it('Add items to my cart tests', function() {
-         
+         //Open main page
         cy.openShirtPage()
         cy.get('[href="/product-category/shirts/?add-to-cart=41"]').should("be.visible")
         .click();
