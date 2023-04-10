@@ -7,6 +7,7 @@ describe("Account Page",  function () {
 
     it("Elements on site tets",  function () {
         
+        //Open main account
         cy.openAccountPage();
         
         
