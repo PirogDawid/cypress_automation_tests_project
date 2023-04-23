@@ -28,7 +28,7 @@ describe("Main Page",  function () {
             
                
         
-    })
+})
     it("Loading page",  function () {
         
         cy.openMainPage();
@@ -41,5 +41,5 @@ describe("Main Page",  function () {
             expect(resp.status).to.eq(200) 
         })
 
-})
+    })
 })

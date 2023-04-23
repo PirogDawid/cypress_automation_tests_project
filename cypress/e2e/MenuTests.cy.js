@@ -4,12 +4,14 @@ const t1 = performance.now();
 const PageLoadTime = ((t1) / 1000);
 const menu =new Menu
 
+beforeEach(() => {
+    cy.openMainPage();
+  })
+
 describe("Main Menu",  function () {
 
     it("Menu Shop",  function () {
-        
-        cy.openMainPage();
-       
+              
             //Shop element in menu test
         menu.menuShop()
             .should('have.attr', 'itemtype', 'https://www.schema.org/SiteNavigationElement')
@@ -23,10 +25,9 @@ describe("Main Menu",  function () {
             .and('have.css', 'line-height', '22.5px')
             .and('have.css', 'font-family', 'Karla, sans-serif')
        
-    })
+            })
         it('Menu Most Wanted', function () {
                        
-        cy.openMainPage();
         expect(PageLoadTime).to.be.lessThan(2) // Page load time
             //Most wanted element in menu test
         menu.menuMostWanted()
@@ -41,10 +42,9 @@ describe("Main Menu",  function () {
             .and('have.css', 'line-height', '22.5px')
             .and('have.css', 'font-family', 'Karla, sans-serif')
        
-    })
+            })
         it("Menu Categories",  function () {
         
-            cy.openMainPage();
             expect(PageLoadTime).to.be.lessThan(2); // Page load time
                 //Shop element in menu test
             menu.menuCategories()
@@ -60,11 +60,10 @@ describe("Main Menu",  function () {
                 .and('have.css', 'font-weight', '700')
                 .and('have.css', 'line-height', '22.5px')
                 .and('have.css', 'font-family', 'Karla, sans-serif')
-        })
+            })
 
         it('Menu AboutUs', function () {
                        
-            cy.openMainPage();
             expect(PageLoadTime).to.be.lessThan(2) // Page load time
                 //About Us element in menu test
             menu.menuAboutUs()
@@ -82,7 +81,6 @@ describe("Main Menu",  function () {
         
         it('Menu Contact', function () {
                        
-            cy.openMainPage();
             expect(PageLoadTime).to.be.lessThan(2) // Page load time
                 //Contact element in menu test
             menu.menuContact()
@@ -97,10 +95,9 @@ describe("Main Menu",  function () {
                 .and('have.css', 'line-height', '22.5px')
                 .and('have.css', 'font-family', 'Karla, sans-serif')
             
-        })
+            })
         it('Menu Blog', function () {
                        
-            cy.openMainPage();
             expect(PageLoadTime).to.be.lessThan(2) // Page load time
                 //Blog element in menu test
             menu.menuBlog()
@@ -119,7 +116,6 @@ describe("Main Menu",  function () {
             })
         it("Loading page",  function () {
         
-                cy.openMainPage();
                 expect(PageLoadTime).to.be.lessThan(2) // Page load time
                 // Check status code 
                 cy.request({

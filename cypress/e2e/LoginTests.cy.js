@@ -1,16 +1,18 @@
-import Login from "../../support/LoginPageObjectModel.cy"
+import Login from "../support/LoginPageObjectModel.cy";
+
 const login = new Login
 const t1 = performance.now();
 const PageLoadTime = ((t1) / 1000);
+
+beforeEach(() => {
+     cy.openAccountPage();
+   })
 
 
 describe("Account Page",  function () {
 
     it("Login with correct login details",  function () {
-        
-        cy.openAccountPage();
-        
-        
+               
        login.usernameField().type(`skleptestarmy17`)
             .should('have.value', 'skleptestarmy17');
        login.passwordField().type(`Test123456789!@`)
@@ -22,10 +24,7 @@ describe("Account Page",  function () {
 })
 
     it("Login with wrong username",  function () {
-        
-        cy.openAccountPage();
-        
-        
+               
        login.usernameField().type(`skleptes`)
             .should('have.value', 'skleptes');
        login.passwordField().type(`Test123456789!@`)
@@ -37,10 +36,7 @@ describe("Account Page",  function () {
                
 })
     it("Login with wrong password",  function () {
-        
-        cy.openAccountPage();
-        
-        
+               
        login.usernameField().type(`skleptestarmy17`)
             .should('have.value', 'skleptestarmy17');
        login.passwordField().type(`Test123`)
@@ -53,11 +49,8 @@ describe("Account Page",  function () {
             .and('have.text', 'skleptestarmy17', )
                    
 })
-    it.only("Login with empty fields",  function () {
-        
-     cy.openAccountPage();
-     
-     
+    it("Login with empty fields",  function () {
+            
     login.usernameField()
          .should('not.have.value')
     login.passwordField()
@@ -69,12 +62,11 @@ describe("Account Page",  function () {
     //Error should exist
     cy.get('#post-8 > div.woocommerce > ul > li > strong').should('exist').and('be.visible')
                            
-    })
-    
 })
+    
+
     it("Loading page",  function () {
         
-        cy.openAccountPage();
         expect(PageLoadTime).to.be.lessThan(2) // Page load time
         // Check status code 
         cy.request({
@@ -83,4 +75,5 @@ describe("Account Page",  function () {
           }).then(resp => {
             expect(resp.status).to.eq(200) 
         })
-    })
+     })
+})
