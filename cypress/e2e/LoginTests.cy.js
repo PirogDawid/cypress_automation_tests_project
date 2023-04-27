@@ -59,6 +59,7 @@ describe("Account Page",  function () {
        //Error mesage when your password is incorrect
        cy.get("#post-8 > div.woocommerce > ul").should('be.visible')
        .contains(' The password you entered for the username ')
+       //Lost your password mesage is visible
        cy.get("#post-8 > div.woocommerce > ul > li > a").should('be.visible')
        .contains("Lost your password?")
        
