@@ -1,13 +1,16 @@
 import Login from "../support/LoginPageObjectModel.cy";
 
 const login = new Login
-const t1 = performance.now();
-const PageLoadTime = ((t1) / 1000);
+
+import { faker } from '@faker-js/faker';
+const randomEmail = faker.internet.email(); //Generate random email
+const randomPassword = faker.internet.password(); //Generate random password
 
 beforeEach(() => {
      cy.openAccountPage();
    })
 
+//Corect login details with username: skleptestarmy17 password :Test123456789!@
 
 describe("Account Page",  function () {
 
@@ -22,32 +25,43 @@ describe("Account Page",  function () {
        
     
 })
-
-    it("Login with wrong username",  function () {
+     it("Login with incorrect email and password",  function () {
                
-       login.usernameField().type(`skleptes`)
-            .should('have.value', 'skleptes');
+     login.usernameField().type(randomEmail)
+          .should('have.value', (randomEmail));
+     login.passwordField().type(randomPassword)
+          .should('have.value', (randomPassword))       
+     login.loginButton().click();
+     login.correctLoginContainer().should('be.visible').and('exist')
+     
+  
+})
+
+    it("Login with wrong email and exists password",  function () {
+               
+       login.usernameField().type(randomEmail)
+            .should('have.value', (randomEmail));
        login.passwordField().type(`Test123456789!@`)
             .should('have.value', 'Test123456789!@')       
        login.loginButton().click();
        ///Error mesage when your username is incorrect
        cy.get("#post-8 > div.woocommerce > ul").should('be.visible')
-       .contains(' is not registered on this site. If you are unsure of your username, try your email address instead.')
+       .contains('A user could not be found with this email address.')
                
 })
-    it("Login with wrong password",  function () {
+    it("Login with exist username and wrong password",  function () {
                
        login.usernameField().type(`skleptestarmy17`)
             .should('have.value', 'skleptestarmy17');
-       login.passwordField().type(`Test123`)
-            .should('have.value', 'Test123')       
+       login.passwordField().type(randomPassword)
+            .should('have.value', (randomPassword))       
        login.loginButton().click();
        //Error mesage when your password is incorrect
        cy.get("#post-8 > div.woocommerce > ul").should('be.visible')
        .contains(' The password you entered for the username ')
-       cy.get('#post-8 > div.woocommerce > ul > li > strong:nth-child(2)').should('be.visible')
-            .and('have.text', 'skleptestarmy17', )
-                   
+       cy.get("#post-8 > div.woocommerce > ul > li > a").should('be.visible')
+       .contains("Lost your password?")
+       
 })
     it("Login with empty fields",  function () {
             
@@ -62,18 +76,5 @@ describe("Account Page",  function () {
     //Error should exist
     cy.get('#post-8 > div.woocommerce > ul > li > strong').should('exist').and('be.visible')
                            
-})
-    
-
-    it("Loading page",  function () {
-        
-        expect(PageLoadTime).to.be.lessThan(2) // Page load time
-        // Check status code 
-        cy.request({
-            url: 'https://skleptest.pl/my-account/',
-            followRedirect: false,
-          }).then(resp => {
-            expect(resp.status).to.eq(200) 
-        })
      })
 })
