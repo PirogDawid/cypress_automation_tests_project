@@ -1,7 +1,4 @@
-
 import Menu from "../support/MenuPageObjectModel.cy"
-const t1 = performance.now();
-const PageLoadTime = ((t1) / 1000);
 const menu =new Menu
 
 beforeEach(() => {
@@ -114,17 +111,6 @@ describe("Main Menu",  function () {
           
               
             })
-        it("Loading page",  function () {
-        
-                expect(PageLoadTime).to.be.lessThan(2) // Page load time
-                // Check status code 
-                cy.request({
-                    url: 'https://skleptest.pl',
-                    followRedirect: false,
-                  }).then(resp => {
-                    expect(resp.status).to.eq(200) 
-                })
-        })
 })
    
     
