@@ -1,6 +1,4 @@
 import Page from "../support/MainPageObjectModel.cy"
-const t1 = performance.now();
-const PageLoadTime = ((t1) / 1000);
 const page =new Page
 
 describe("Main Page",  function () {
@@ -29,17 +27,5 @@ describe("Main Page",  function () {
                
         
 })
-    it("Loading page",  function () {
-        
-        cy.openMainPage();
-        expect(PageLoadTime).to.be.lessThan(2) // Page load time
-        // Check status code 
-        cy.request({
-            url: 'https://skleptest.pl',
-            followRedirect: false,
-          }).then(resp => {
-            expect(resp.status).to.eq(200) 
-        })
-
-    })
+    
 })

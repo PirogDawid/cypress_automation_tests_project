@@ -1,5 +1,4 @@
 import Search from "../support/SearchPageObjectModel.cy";
-
 const search = new Search
 
 beforeEach(() => {
