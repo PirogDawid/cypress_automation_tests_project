@@ -1,31 +1,23 @@
 import Page from "../support/MainPageObjectModel.cy"
 const page = new Page
-const t1 = performance.now();
-const PageLoadTime = ((t1) / 1000);
 
-beforeEach(() => {
-    cy.openShirtPage();
-  })
 
-describe('Website shop tests ', function() {
+describe('Add items to cart', function() {
         
-    it('Add items to my cart tests', function() {
-         
-        cy.get('[href="/product-category/shirts/?add-to-cart=41"]')
-          .should("be.visible")
-          .click();
-        page.cartBar().click();
-             
-        })
-    it("Loading page",  function () {
-            
-        expect(PageLoadTime).to.be.lessThan(2) // Page load time
-            // Check status code 
-        cy.request({
-            url: 'https://skleptest.pl/product-category/shirts/',
-            followRedirect: false,
-          }).then(resp => {
-            expect(resp.status).to.eq(200) 
-        })
-    })
+    it('Add single item to my cart', function() {
+        
+        cy.visit('https://skleptest.pl/product-category/shirts/')
+        //Click on add to cart button
+        cy.get('.post-56 > .button').click()
+        cy.wait(1000) 
+        //Get my cart page
+        cy.get('#page > header.top-header-bar-container > div > div > div > ul > li.top-cart').click()
+        //Checking if the item was added correctly
+        cy.get('#post-6 > div.woocommerce > form > table > tbody > tr.woocommerce-cart-form__cart-item.cart_item')
+          .should('be.visible').and('exist')
+        cy.get('[href="https://skleptest.pl/product/manago-shirt/"]').should('exist').and('be.visible')
+        
+        
+
+        })  
 })
