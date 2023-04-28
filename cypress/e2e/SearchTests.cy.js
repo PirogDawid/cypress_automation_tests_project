@@ -1,5 +1,7 @@
 import Search from "../support/SearchPageObjectModel.cy";
 const search = new Search
+import { faker } from '@faker-js/faker';
+const randomWord = faker.word.adverb({ length: { min: 5, max: 30 }, strategy: "fail" })
 
 beforeEach(() => {
     cy.openMainPage();
@@ -31,11 +33,20 @@ describe("Main Page",  function () {
     it("Click on search button", function () {
         
             search.searchButton().click();
-            cy.url().should('include', '/?s=')
+            cy.url().should('include', '/?s=') 
     })
-    it("Typing invalid text in a search field", function () {
+    it("Search not exist item", function () {
 
             search.searchField()
-            
-    })   
+                .type(randomWord).type('{enter}')
+            cy.get('#main > section').should('be.visible') //Header not found should be visible           
+    })
+    it("Search exist item shirt", function () {
+
+            search.searchField()
+                .type('shirt').type('{enter}')
+            cy.get('#main > header').should('be.visible') //Header SEARCH RESULTS FOR: SHIRT should be visible
+            cy.url().should('include', 'https://skleptest.pl/?s=shirt')
+    })
+       
 })
