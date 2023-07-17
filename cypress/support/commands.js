@@ -38,3 +38,9 @@ Cypress.Commands.add("openMainPage", () => {
 Cypress.Commands.add("openAccountPage", () => {
     cy.visit("https://skleptest.pl/my-account/");
 })
+Cypress.Commands.add("openContactUsPage", () => {
+    cy.visit("https://skleptest.pl/test-contact-blablabla/");
+})
+
+
+
