@@ -13,7 +13,7 @@ beforeEach(() => {
 //Corect login details with username: skleptestarmy17 password :Test123456789!@
 
 describe("Account Page",  function () {
-//User use correct login details 
+//User use correct email and password to login
     it("Login with correct login details",  function () {
                
        login.usernameField().type(`skleptestarmy17`)
@@ -25,6 +25,7 @@ describe("Account Page",  function () {
        
     
 })
+//User use incorrect email and password to login
      it("Login with incorrect email and password",  function () {
                
      login.usernameField().type(randomEmail)
@@ -36,7 +37,7 @@ describe("Account Page",  function () {
      
   
 })
-
+//User use incorrect email and correct password to login
     it("Login with wrong email and exists password",  function () {
                
        login.usernameField().type(randomEmail)
@@ -49,6 +50,7 @@ describe("Account Page",  function () {
        .contains('A user could not be found with this email address.');
                
 })
+//User use correct email and incorrect password
     it("Login with exist username and wrong password",  function () {
                
        login.usernameField().type(`skleptestarmy17`)
@@ -64,6 +66,7 @@ describe("Account Page",  function () {
        .contains("Lost your password?");
        
 })
+//User try to login without email and password
     it("Login with empty fields",  function () {
             
     login.usernameField()
