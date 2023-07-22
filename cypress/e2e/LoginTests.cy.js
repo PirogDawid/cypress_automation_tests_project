@@ -13,7 +13,7 @@ beforeEach(() => {
 //Corect login details with username: skleptestarmy17 password :Test123456789!@
 
 describe("Account Page",  function () {
-
+//User use correct login details 
     it("Login with correct login details",  function () {
                
        login.usernameField().type(`skleptestarmy17`)
